@@ -4,171 +4,462 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hardik Sondagar - Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --primary-light: #818cf8;
+            --secondary: #7c3aed;
+            --bg: #f9fafb;
+            --text: #111827;
+            --text-light: #4b5563;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            padding: 60px 0;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .header-image {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+
+        .name {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .hover-lift {
-            transition: transform 0.2s ease-in-out;
+
+        .title {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 24px;
         }
-        .hover-lift:hover {
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--text-light);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover {
             transform: translateY(-5px);
+            color: var(--primary);
+        }
+
+        /* Main content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title i {
+            margin-right: 8px;
+        }
+
+        /* About section */
+        .about {
+            margin-bottom: 40px;
+        }
+
+        .about p {
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        /* Project grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            position: relative;
+            border-left: 3px solid var(--primary);
+            padding: 20px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .project-title i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Experience section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: white;
+        }
+
+        .experience-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--primary-dark);
+        }
+
+        .experience-date {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .achievement-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Skills section */
+        .sidebar {
+            padding-top: 40px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+            border-color: transparent;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--text-light);
+            font-size: 14px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
-    <div class="container mx-auto px-4 py-12 max-w-4xl">
-        <!-- Hero Section -->
-        <header class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12 text-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-purple-50/50"></div>
-            <div class="relative">
-                <h1 class="text-5xl font-bold gradient-text mb-4">Hardik Sondagar</h1>
-                <p class="text-xl text-gray-600 mb-6">Software Engineer & Founding Engineer at Cast.app</p>
-                <div class="flex justify-center gap-6">
-                    <a href="https://linkedin.com/in/hardiksondagar" target="_blank" class="text-gray-600 hover:text-indigo-600 transition-colors group">
-                        <i class="fab fa-linkedin mr-2 group-hover:scale-110 transition-transform"></i>LinkedIn
-                    </a>
-                    <a href="https://github.com/hardiksondagar" target="_blank" class="text-gray-600 hover:text-indigo-600 transition-colors group">
-                        <i class="fab fa-github mr-2 group-hover:scale-110 transition-transform"></i>GitHub
-                    </a>
-                    <a href="https://twitter.com/hardiksondagar" target="_blank" class="text-gray-600 hover:text-indigo-600 transition-colors group">
-                        <i class="fab fa-twitter mr-2 group-hover:scale-110 transition-transform"></i>Twitter
-                    </a>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="name">Hardik Sondagar</h1>
+                    <p class="title">Software Engineer & Founding Engineer at Cast.app</p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/hardiksondagar" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                        <a href="https://github.com/hardiksondagar" target="_blank" class="social-link">
+                            <i class="fab fa-github fa-lg"></i>
+                        </a>
+                        <a href="https://twitter.com/hardiksondagar" target="_blank" class="social-link">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="header-image">
+                    <div class="avatar">HS</div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- About Section -->
-        <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12 hover-lift">
-            <h2 class="text-2xl font-semibold gradient-text mb-6">About Me</h2>
-            <div class="space-y-4">
-                <p class="text-gray-700 leading-relaxed">
-                    I'm a versatile Software Engineer with rich experience across multiple early-stage startups. My expertise spans diverse technologies, consistently delivering high-quality solutions. I've explored entrepreneurship, learning valuable lessons along the way.
-                </p>
-                <p class="text-gray-700 leading-relaxed">
-                    From leading end-to-end product development to quickly adapting to client needs, my track record reflects efficiency and adaptability. I excel in integrating third-party solutions and optimizing infrastructure for cost-effectiveness.
-                </p>
-            </div>
-        </section>
+    <div class="container">
+        <div class="main-content">
+            <main>
+                <!-- About Section -->
+                <section class="about">
+                    <h2 class="section-title"><i class="fas fa-user-circle"></i>About Me</h2>
+                    <p>
+                        I'm a versatile Software Engineer with rich experience across multiple early-stage startups. My expertise spans diverse technologies, consistently delivering high-quality solutions. I've explored entrepreneurship, learning valuable lessons along the way.
+                    </p>
+                    <p>
+                        From leading end-to-end product development to quickly adapting to client needs, my track record reflects efficiency and adaptability. I excel in integrating third-party solutions and optimizing infrastructure for cost-effectiveness.
+                    </p>
+                </section>
 
-        <!-- Projects Section -->
-        <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12">
-            <h2 class="text-2xl font-semibold gradient-text mb-6">Projects</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <a href="https://hardiksondagar.github.io/income-tax-calculator" target="_blank" class="group block p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all hover-lift">
-                    <h3 class="text-lg font-medium text-indigo-800 mb-2 group-hover:text-indigo-600 transition-colors">Income Tax Calculator</h3>
-                    <p class="text-gray-600">A comprehensive tool for calculating income tax with detailed breakdowns and explanations.</p>
-                </a>
-                <a href="https://hardiksondagar.github.io/will-my-money-last" target="_blank" class="group block p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all hover-lift">
-                    <h3 class="text-lg font-medium text-indigo-800 mb-2 group-hover:text-indigo-600 transition-colors">Will My Money Last?</h3>
-                    <p class="text-gray-600">A financial planning tool to calculate retirement savings and longevity.</p>
-                </a>
-                <a href="https://hardiksondagar.github.io/pdf-password-remover" target="_blank" class="group block p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all hover-lift">
-                    <h3 class="text-lg font-medium text-indigo-800 mb-2 group-hover:text-indigo-600 transition-colors">PDF Password Remover</h3>
-                    <p class="text-gray-600">Remove passwords from PDF files directly in your browser - no server processing required.</p>
-                </a>
-                <a href="https://hardiksondagar.github.io/real-estate-return-calculator/" target="_blank" class="group block p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all hover-lift">
-                    <h3 class="text-lg font-medium text-indigo-800 mb-2 group-hover:text-indigo-600 transition-colors">Real Estate Return Calculator</h3>
-                    <p class="text-gray-600">Compare property investment returns with alternative options and make informed financial decisions for your future.</p>
-                </a>
-                <a href="https://hardiksondagar.github.io/cross-repository-milestones/" target="_blank" class="group block p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl hover:shadow-lg transition-all hover-lift">
-                    <h3 class="text-lg font-medium text-indigo-800 mb-2 group-hover:text-indigo-600 transition-colors">Cross-Repo Milestones</h3>
-                    <p class="text-gray-600">This tool allows you to create identical milestones across multiple GitHub repositories simultaneously, ensuring consistent project management.</p>
-                </a>
-            </div>
-        </section>
+                <!-- Projects Section -->
+                <section>
+                    <h2 class="section-title"><i class="fas fa-code"></i>Vibe Coding Projects</h2>
+                    <div class="project-grid">
+                        <a href="https://hardiksondagar.github.io/income-tax-calculator" target="_blank" class="project-card">
+                            <h3 class="project-title"><i class="fas fa-calculator"></i>Income Tax Calculator</h3>
+                            <p class="project-description">A comprehensive tool for calculating income tax with detailed breakdowns and explanations.</p>
+                        </a>
 
-        <!-- Experience Section -->
-        <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12">
-            <h2 class="text-2xl font-semibold gradient-text mb-6">Experience</h2>
-            <div class="space-y-8">
-                <div class="border-b border-gray-100 pb-8 hover-lift">
-                    <h3 class="text-xl font-medium text-indigo-800 mb-2">Founding Engineer at Cast.app</h3>
-                    <p class="text-gray-600 mb-4">Dec 2021 - Present</p>
-                    <ul class="list-none space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Reduced API latency by 90%</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Developed streamlined data processing pipeline</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Created unified SQL query system for multiple data sources</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Optimized infrastructure for cost-effectiveness</span>
-                        </li>
-                    </ul>
+                        <a href="https://hardiksondagar.github.io/will-my-money-last" target="_blank" class="project-card">
+                            <h3 class="project-title"><i class="fas fa-piggy-bank"></i>Will My Money Last?</h3>
+                            <p class="project-description">A financial planning tool to calculate retirement savings and longevity.</p>
+                        </a>
+
+                        <a href="https://hardiksondagar.github.io/pdf-password-remover" target="_blank" class="project-card">
+                            <h3 class="project-title"><i class="fas fa-unlock-alt"></i>PDF Password Remover</h3>
+                            <p class="project-description">Remove passwords from PDF files directly in your browser - no server processing required.</p>
+                        </a>
+
+                        <a href="https://hardiksondagar.github.io/real-estate-return-calculator/" target="_blank" class="project-card">
+                            <h3 class="project-title"><i class="fas fa-home"></i>Real Estate Return Calculator</h3>
+                            <p class="project-description">Compare property investment returns with alternative options and make informed financial decisions for your future.</p>
+                        </a>
+
+                        <a href="https://hardiksondagar.github.io/cross-repository-milestones/" target="_blank" class="project-card">
+                            <h3 class="project-title"><i class="fas fa-tasks"></i>Cross-Repo Milestones</h3>
+                            <p class="project-description">This tool allows you to create identical milestones across multiple GitHub repositories simultaneously, ensuring consistent project management.</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Experience Section -->
+                <section>
+                    <h2 class="section-title"><i class="fas fa-briefcase"></i>Experience</h2>
+                    <div class="experience-timeline">
+                        <div class="experience-item">
+                            <h3 class="experience-title">Founding Engineer at Cast.app</h3>
+                            <p class="experience-date">Dec 2021 - Present</p>
+                            <ul class="achievement-list">
+                                <li class="achievement-item">Reduced API latency by 90%</li>
+                                <li class="achievement-item">Developed streamlined data processing pipeline</li>
+                                <li class="achievement-item">Created unified SQL query system for multiple data sources</li>
+                                <li class="achievement-item">Optimized infrastructure for cost-effectiveness</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3 class="experience-title">Software Architect at Venture Highway LLP</h3>
+                            <p class="experience-date">Dec 2019 - Feb 2022</p>
+                            <ul class="achievement-list">
+                                <li class="achievement-item">Managed engineering for $80 million fund product</li>
+                                <li class="achievement-item">Designed distributed data pipelines</li>
+                                <li class="achievement-item">Developed recommendation engine boosting startup discovery by 50%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Skills Section -->
+            <aside class="sidebar">
+                <h2 class="section-title"><i class="fas fa-tools"></i>Skills</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">AWS/GCP</span>
+                    <span class="skill-tag">System Architecture</span>
+                    <span class="skill-tag">Microservices</span>
+                    <span class="skill-tag">API Design</span>
+                    <span class="skill-tag">Product Design</span>
+                    <span class="skill-tag">Web Scraping</span>
+                    <span class="skill-tag">NoSQL</span>
+                    <span class="skill-tag">Time Series Databases</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Data Analysis</span>
                 </div>
-                <div class="hover-lift">
-                    <h3 class="text-xl font-medium text-indigo-800 mb-2">Software Architect at Venture Highway LLP</h3>
-                    <p class="text-gray-600 mb-4">Dec 2019 - Feb 2022</p>
-                    <ul class="list-none space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Managed engineering for $80 million fund product</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Designed distributed data pipelines</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-indigo-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Developed recommendation engine boosting startup discovery by 50%</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-12">
-            <h2 class="text-2xl font-semibold gradient-text mb-6">Skills</h2>
-            <div class="flex flex-wrap gap-3">
-                <!-- Backend & Infrastructure -->
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Python</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">SQL</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">AWS/GCP</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">System Architecture</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Microservices</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">API Design</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Product Design</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Web Scraping</span>
-
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">NoSQL</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Time Series Databases</span>
-
-                <!-- DevOps & Tools -->
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Docker</span>
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">CI/CD</span>
-
-                <!-- Data & Analytics -->
-                <span class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm hover:shadow-md transition-all hover-lift">Data Analysis</span>
-
-                <!-- Architecture & Design -->
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center text-gray-500 text-sm">
-            <p>© 2024 Hardik Sondagar. All rights reserved.</p>
-        </footer>
+            </aside>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Hardik Sondagar. All rights reserved.</p>
+            <p class="cursor-credit">Site generated by <a href="https://cursor.sh" target="_blank">Cursor AI</a></p>
+        </div>
+    </footer>
 </body>
 </html>
